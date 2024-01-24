@@ -12,77 +12,35 @@
         <div id="luna"></div>
         <div id="gato"></div>
         <div id="muro" class="moved-down"></div>
-        <div id="background-images" onclick="handleImageClick(event)">
-            <img class="bg1" src="moulin1.png" alt="Moulin 1" onclick="openPopup('https://www.youtube.com/embed/HGu1t7cvP38')">
-            <img class="bg2" src="moulin2.png" alt="Moulin 2" onclick="openPopup('https://www.youtube.com/embed/VIDEO_ID_2')">
-            <img class="bg3" src="moulin3.png" alt="Moulin 3" onclick="openPopup('https://www.youtube.com/embed/VIDEO_ID_3')">
-            <img class="bg4" src="Moulin4.png" alt="Moulin 4" onclick="openPopup('https://www.youtube.com/embed/VIDEO_ID_4')">
-            <img class="bg5" src="Moulin5.png" alt="Moulin 5" onclick="openPopup('https://www.youtube.com/embed/VIDEO_ID_5')">
-            <img class="bg6" src="Moulin6.png" alt="Moulin 6" onclick="openPopup('https://www.youtube.com/embed/VIDEO_ID_6')">
-            <img class="bg7" src="Moulin7.png" alt="Moulin 7" onclick="openPopup('https://www.youtube.com/embed/VIDEO_ID_7')">
+        <div id="background-images">
+            <img class="bg1" src="moulin1.png" alt="Moulin 1" onclick="openPopup('moulin1.png')">
+            <img class="bg2" src="moulin2.png" alt="Moulin 2" onclick="openPopup('moulin2.png')">
+            <img class="bg3" src="moulin3.png" alt="Moulin 3" onclick="openPopup('moulin3.png')">
+            <img class="bg4" src="Moulin4.png" alt="Moulin 4" onclick="openPopup('Moulin4.png')">
+            <img class="bg5" src="Moulin5.png" alt="Moulin 5" onclick="openPopup('Moulin5.png')">
+            <img class="bg6" src="Moulin6.png" alt="Moulin 6" onclick="openPopup('Moulin6.png')">
+            <img class="bg7" src="Moulin7.png" alt="Moulin 7" onclick="openPopup('Moulin7.png')">
         </div>
     </div>
 
-    <div id="popup" class="popup">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <iframe id="popupVideo" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+    <div id="popup-overlay">
+        <div id="popup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img id="popupImage" src="" alt="Popup Image">
+        </div>
     </div>
+
     <script>
-        // Récupérer la popup et la vidéo
-        var popup = document.getElementById('popup');
-        var popupVideo = document.getElementById('popupVideo');
-        
-        // Récupérer l'élément #background-images
-        var backgroundImages = document.getElementById('background-images');
-        
-        // Récupérer l'élément #gato
-        var gato = document.getElementById('gato');
-    
-        // Variable pour indiquer si une image a été cliquée
-        var imageClicked = false;
-    
-        // Fonction pour gérer le clic sur les images
-        function handleImageClick(event) {
-            // Vérifier si le clic provient d'une image
-            if (event.target.tagName === 'IMG') {
-                console.log('Image cliquée');
-                // Arrêter l'animation du chat
-                gato.style.animationPlayState = 'paused';
-                // Arrêter le défilement en parallaxe
-                backgroundImages.style.animationPlayState = 'paused';
-                // Définir la variable pour indiquer qu'une image a été cliquée
-                imageClicked = true;
-                
-                // Attendre un court moment et ensuite reprendre l'animation
-                setTimeout(function() {
-                    gato.style.animationPlayState = 'running';
-                    backgroundImages.style.animationPlayState = 'running';
-                    // Réinitialiser la variable d'état après la reprise de l'animation
-                    imageClicked = false;
-                }, 1000); // ajustez le délai en millisecondes selon vos besoins
-            }
+        function openPopup(imageSrc) {
+            // Afficher la pop-up avec l'image cliquée
+            document.getElementById('popupImage').src = imageSrc;
+            document.getElementById('popup-overlay').style.display = 'flex';
         }
-    
-        // Fonction pour afficher la popup
-        function openPopup(videoUrl) {
-            console.log('Open popup called');
-            popupVideo.src = videoUrl; // Mettre à jour l'URL de la vidéo
-            popup.style.display = 'block';
-            backgroundImages.classList.remove('paused'); // Retirer la pause de l'animation du parallaxe
-            
-            // Si une image a été cliquée, arrêter le défilement en parallaxe
-            if (imageClicked) {
-                console.log('Image cliquée, arrêt du défilement en parallaxe');
-                backgroundImages.style.animationPlayState = 'paused';
-            }
-        }
-    
-        // Fonction pour fermer la popup
+
         function closePopup() {
-            console.log('Close popup called');
-            popup.style.display = 'none';
-            popupVideo.src = ''; // Arrêter la vidéo lors de la fermeture
-            backgroundImages.classList.add('paused'); // Remettre la pause de l'animation du parallaxe
+            // Fermer la pop-up
+            document.getElementById('popupImage').src = '';
+            document.getElementById('popup-overlay').style.display = 'none';
         }
     </script>
 </body>
