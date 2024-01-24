@@ -1,3 +1,6 @@
+/* REVOIR LE MOUVEMENT DU PARALLAXE ENSEMBLE APRES  */
+
+
 document.addEventListener("DOMContentLoaded", function() {
     var parallaxElements = document.querySelectorAll(".background-image");
 

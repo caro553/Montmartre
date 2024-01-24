@@ -11,9 +11,11 @@
         <div id="cielo"></div>
         <div id="luna"></div>
         <div id="gato"></div>
-        <div id="muro" class="moved-down"></div>
         <div id="background-images">
-            <img class="bg1" src="moulin1.png" alt="Moulin 1" onclick="openPopup('moulin1.png')">
+            <img src="lampadaire.png" alt="Lampadaire" class="lampadaire" style="width: 700px;">
+            <img src="lampadaire.png" alt="Lampadaire" class="lampadaire2" style="width: 700px;">
+
+            <img class="bg1" src="moulin1.png" alt="Moulin 1" onclick="openPopup('moulin1.png')">      
             <img class="bg2" src="moulin2.png" alt="Moulin 2" onclick="openPopup('moulin2.png')">
             <img class="bg3" src="moulin3.png" alt="Moulin 3" onclick="openPopup('moulin3.png')">
             <img class="bg4" src="Moulin4.png" alt="Moulin 4" onclick="openPopup('Moulin4.png')">
@@ -35,6 +37,7 @@
             // Afficher la pop-up avec l'image cliquée
             document.getElementById('popupImage').src = imageSrc;
             document.getElementById('popup-overlay').style.display = 'flex';
+            document.getElementById('popup-static').style.display = 'static';
         }
 
         function closePopup() {
