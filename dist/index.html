@@ -1,27 +1,89 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CodePen - walking cat </title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="./style.css">
-
+    <meta charset="UTF-8">
+    <title>CodePen - walking cat </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<html>
-    <body>
     <div id="marco">
-      <div id="cielo"></div>
-			<div id="luna"></div>
-			<div id="gato"></div>
-			<div id="muro"></div>
-			<div id="edificios"></div>
-	</div>
-	</body>
+        <div id="cielo"></div>
+        <div id="luna"></div>
+        <div id="gato"></div>
+        <div id="muro" class="moved-down"></div>
+        <div id="background-images" onclick="handleImageClick(event)">
+            <img class="bg1" src="moulin1.png" alt="Moulin 1" onclick="openPopup('https://www.youtube.com/embed/HGu1t7cvP38')">
+            <img class="bg2" src="moulin2.png" alt="Moulin 2" onclick="openPopup('https://www.youtube.com/embed/VIDEO_ID_2')">
+            <img class="bg3" src="moulin3.png" alt="Moulin 3" onclick="openPopup('https://www.youtube.com/embed/VIDEO_ID_3')">
+            <img class="bg4" src="Moulin4.png" alt="Moulin 4" onclick="openPopup('https://www.youtube.com/embed/VIDEO_ID_4')">
+            <img class="bg5" src="Moulin5.png" alt="Moulin 5" onclick="openPopup('https://www.youtube.com/embed/VIDEO_ID_5')">
+            <img class="bg6" src="Moulin6.png" alt="Moulin 6" onclick="openPopup('https://www.youtube.com/embed/VIDEO_ID_6')">
+            <img class="bg7" src="Moulin7.png" alt="Moulin 7" onclick="openPopup('https://www.youtube.com/embed/VIDEO_ID_7')">
+        </div>
+    </div>
 
-</html>
-<!-- partial -->
-  
+    <div id="popup" class="popup">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <iframe id="popupVideo" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <script>
+        // Récupérer la popup et la vidéo
+        var popup = document.getElementById('popup');
+        var popupVideo = document.getElementById('popupVideo');
+        
+        // Récupérer l'élément #background-images
+        var backgroundImages = document.getElementById('background-images');
+        
+        // Récupérer l'élément #gato
+        var gato = document.getElementById('gato');
+    
+        // Variable pour indiquer si une image a été cliquée
+        var imageClicked = false;
+    
+        // Fonction pour gérer le clic sur les images
+        function handleImageClick(event) {
+            // Vérifier si le clic provient d'une image
+            if (event.target.tagName === 'IMG') {
+                console.log('Image cliquée');
+                // Arrêter l'animation du chat
+                gato.style.animationPlayState = 'paused';
+                // Arrêter le défilement en parallaxe
+                backgroundImages.style.animationPlayState = 'paused';
+                // Définir la variable pour indiquer qu'une image a été cliquée
+                imageClicked = true;
+                
+                // Attendre un court moment et ensuite reprendre l'animation
+                setTimeout(function() {
+                    gato.style.animationPlayState = 'running';
+                    backgroundImages.style.animationPlayState = 'running';
+                    // Réinitialiser la variable d'état après la reprise de l'animation
+                    imageClicked = false;
+                }, 1000); // ajustez le délai en millisecondes selon vos besoins
+            }
+        }
+    
+        // Fonction pour afficher la popup
+        function openPopup(videoUrl) {
+            console.log('Open popup called');
+            popupVideo.src = videoUrl; // Mettre à jour l'URL de la vidéo
+            popup.style.display = 'block';
+            backgroundImages.classList.remove('paused'); // Retirer la pause de l'animation du parallaxe
+            
+            // Si une image a été cliquée, arrêter le défilement en parallaxe
+            if (imageClicked) {
+                console.log('Image cliquée, arrêt du défilement en parallaxe');
+                backgroundImages.style.animationPlayState = 'paused';
+            }
+        }
+    
+        // Fonction pour fermer la popup
+        function closePopup() {
+            console.log('Close popup called');
+            popup.style.display = 'none';
+            popupVideo.src = ''; // Arrêter la vidéo lors de la fermeture
+            backgroundImages.classList.add('paused'); // Remettre la pause de l'animation du parallaxe
+        }
+    </script>
 </body>
 </html>
