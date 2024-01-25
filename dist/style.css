@@ -3,6 +3,10 @@ html{
     margin:0;
     background: #0c0207;
     }
+    html, body {
+        overflow-x: hidden; /* Empêche le défilement horizontal */
+    }
+    
 #marco{
     width: 1325px;
     height: 500px;
@@ -44,7 +48,7 @@ html{
     animation-play-state: paused;
   }
   
-    
+    /*
   .bg1 { animation: parallax-1 50s linear infinite; }
   .bg2 { animation: parallax-2 50s linear infinite; }
   .bg3 { animation: parallax-3 50s linear infinite; }
@@ -60,6 +64,11 @@ html{
     @keyframes parallax-5 { 0%, 100% { transform: translateX(0%); } 100% { transform: translateX(-600%); } }
     @keyframes parallax-6 { 0%, 100% { transform: translateX(0%); } 100% { transform: translateX(-600%); } }
     @keyframes parallax-7 { 0%, 100% { transform: translateX(0%); } 100% { transform: translateX(-600%); } }
+*/
+
+.bg1, .bg2, .bg3, .bg4, .bg5, .bg6, .bg7 {
+    transform: translateX(0px);
+}
 
     .lampadaire {
         position: absolute;
@@ -144,6 +153,8 @@ html{
         -moz-animation: sprite-animation 1.2s steps(16,end) infinite; 
         -ms-animation: sprite-animation 1.2s steps(16,end) infinite; 
         animation: sprite-animation 1.2s steps(16,end) infinite;
+        position: absolute; /* Ajoutez ceci si ce n'est pas déjà fait */
+    left: 2em; /* Assurez-vous que cette propriété est définie pour permettre le mouvement horizontal */
     }
     
 
