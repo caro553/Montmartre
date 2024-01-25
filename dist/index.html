@@ -12,16 +12,19 @@
         <div id="luna"></div>
         <div id="gato"></div>
         <div id="background-images">
-            <img src="lampadaire.png" alt="Lampadaire" class="lampadaire" style="width: 700px;">
-            <img src="lampadaire.png" alt="Lampadaire" class="lampadaire2" style="width: 700px;">
+            <!-- <img src="lampadaire.png" alt="Lampadaire" class="lampadaire" style="width: 700px;">
+            <img src="lampadaire.png" alt="Lampadaire" class="lampadaire2" style="width: 700px;"> -->
+            <img class="bg5" src="Moulin5.png" alt="Moulin 5" onclick="openPopup('Moulin5.png')">
+            <img class="bg4" src="Moulin4.png" alt="Moulin 4" onclick="openPopup('Moulin4.png')">
+
+            <img class="bg2" src="moulin2.png" alt="Moulin 2" onclick="openPopup('moulin2.png')">
+            <img class="bg7" src="Moulin7.png" alt="Moulin 7" onclick="openPopup('Moulin7.png')">
+
+            <img class="bg3" src="moulin3.png" alt="Moulin 3" onclick="openPopup('moulin3.png')">
+
+            <img class="bg6" src="Moulin6.png" alt="Moulin 6" onclick="openPopup('Moulin6.png')">
 
             <img class="bg1" src="moulin1.png" alt="Moulin 1" onclick="openPopup('moulin1.png')">      
-            <img class="bg2" src="moulin2.png" alt="Moulin 2" onclick="openPopup('moulin2.png')">
-            <img class="bg3" src="moulin3.png" alt="Moulin 3" onclick="openPopup('moulin3.png')">
-            <img class="bg4" src="Moulin4.png" alt="Moulin 4" onclick="openPopup('Moulin4.png')">
-            <img class="bg5" src="Moulin5.png" alt="Moulin 5" onclick="openPopup('Moulin5.png')">
-            <img class="bg6" src="Moulin6.png" alt="Moulin 6" onclick="openPopup('Moulin6.png')">
-            <img class="bg7" src="Moulin7.png" alt="Moulin 7" onclick="openPopup('Moulin7.png')">
         </div>
     </div>
 
@@ -34,17 +37,17 @@
 
     <script>
         function openPopup(imageSrc) {
-            console.log("openPopup appelé avec l'image :", imageSrc); // Pour vérifier si la fonction est appelée
+            console.log("openPopup appelé avec l'image :", imageSrc); 
             var popupImage = document.getElementById('popupImage');
             var popupOverlay = document.getElementById('popup-overlay');
     
             popupImage.src = imageSrc;
-            console.log("Image src défini comme :", popupImage.src); // Vérifier si le src est correctement défini
+            console.log("Image src défini comme :", popupImage.src);
             popupOverlay.style.display = 'flex';
         }
     
         function closePopup() {
-            console.log("closePopup appelé"); // Pour vérifier si cette fonction est appelée
+            console.log("closePopup appelé"); 
             var popupOverlay = document.getElementById('popup-overlay');
             popupOverlay.style.display = 'none';
         }
@@ -61,12 +64,12 @@
                     elem.style.transform = 'translateX(' + (translateX - 10) + 'px)';
                 });
     
-                // Animer la marche du chat sans le déplacer
+               
                 cat.style.animationPlayState = 'running'; 
             }
         });
     
-        // Arrêter l'animation du chat lorsqu'on relâche la touche
+     
         document.addEventListener('keyup', function(event) {
             if (event.key === "ArrowRight") {
                 var cat = document.getElementById('gato');
@@ -74,8 +77,5 @@
             }
         });
     </script>
-    
-    
-    
 </body>
 </html>
