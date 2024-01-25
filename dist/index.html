@@ -34,17 +34,48 @@
 
     <script>
         function openPopup(imageSrc) {
-            // Afficher la pop-up avec l'image cliquée
-            document.getElementById('popupImage').src = imageSrc;
-            document.getElementById('popup-overlay').style.display = 'flex';
-            document.getElementById('popup-static').style.display = 'static';
+            console.log("openPopup appelé avec l'image :", imageSrc); // Pour vérifier si la fonction est appelée
+            var popupImage = document.getElementById('popupImage');
+            var popupOverlay = document.getElementById('popup-overlay');
+    
+            popupImage.src = imageSrc;
+            console.log("Image src défini comme :", popupImage.src); // Vérifier si le src est correctement défini
+            popupOverlay.style.display = 'flex';
         }
-
+    
         function closePopup() {
-            // Fermer la pop-up
-            document.getElementById('popupImage').src = '';
-            document.getElementById('popup-overlay').style.display = 'none';
+            console.log("closePopup appelé"); // Pour vérifier si cette fonction est appelée
+            var popupOverlay = document.getElementById('popup-overlay');
+            popupOverlay.style.display = 'none';
         }
+    
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "ArrowRight") {
+                var parallaxElements = document.querySelectorAll('.bg1, .bg2, .bg3, .bg4, .bg5, .bg6, .bg7');
+                var cat = document.getElementById('gato');
+    
+                parallaxElements.forEach(function(elem) {
+                    var currentTransform = getComputedStyle(elem).transform;
+                    var matrixValues = currentTransform.split(',');
+                    var translateX = parseFloat(matrixValues[4]);
+                    elem.style.transform = 'translateX(' + (translateX - 10) + 'px)';
+                });
+    
+                // Animer la marche du chat sans le déplacer
+                cat.style.animationPlayState = 'running'; 
+            }
+        });
+    
+        // Arrêter l'animation du chat lorsqu'on relâche la touche
+        document.addEventListener('keyup', function(event) {
+            if (event.key === "ArrowRight") {
+                var cat = document.getElementById('gato');
+                cat.style.animationPlayState = 'paused';
+            }
+        });
     </script>
+    
+    
+    
 </body>
 </html>
