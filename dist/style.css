@@ -7,37 +7,41 @@ html {
 html, body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Pour empêcher le défilement horizontal si nécessaire */
+    overflow-x: hidden;
 }
     #marco {
         width: 1325px;
-        height: 600px; /* Ajusté pour une meilleure visibilité */
+        height: 600px; 
         margin: 20px auto;
-        overflow: visible; /* Modifié pour permettre un débordement */
+        overflow: visible; 
         border-radius: 16px;
         margin-top: 6em;
+        background: url('decor.png') center center no-repeat; /* Utilisez l'image de fond */
+        background-size: cover;
+        z-index: 5; 
+        
     }
 
     #cielo {
         position: absolute;
         top: 0;
         left: 0;
-        width: 100vw; /* Largeur de la fenêtre du navigateur */
-        height: 100vh; /* Hauteur de la fenêtre du navigateur */
-        background: linear-gradient(to bottom, #222d5a 0%, #202744 100%); /* Dégradé de bleu nuit */
-        z-index: -30; /* Ajustez si nécessaire pour la superposition */
-        border-radius: 0; /* Supprimé car couvrant tout l'écran */
+        width: 100vw; 
+        height: 100vh; 
+        background: linear-gradient(to bottom, #222d5a 0%, #202744 100%); 
+        z-index: -1; 
+        border-radius: 0; 
     }
     
 
     #background-images {
-        height: 100%; /* Ajusté pour correspondre à la hauteur de #marco */
+        height: 100%; 
         width: 800%;
         z-index: 15;
         top: 1em;
         position: absolute;
-        overflow: visible; /* Ajouté pour permettre un débordement */
-        pointer-events: auto; /* Réagit aux événements de la souris */
+        overflow: visible; 
+        pointer-events: auto; 
     }
 
   .background-image {
@@ -45,30 +49,49 @@ html, body {
     width: auto;
     background-size: cover;
     position: absolute;
-    transform: translateX(-10%); /* Ajustez cette valeur pour rapprocher davantage les images */
+    transform: translateX(-10%); 
 }
 .paused {
     animation-play-state: paused;
   }
   #route {
     position: absolute;
-    top: calc(10em + 365px + 70px); /* Diminuez la valeur de top pour déplacer l'image légèrement vers le haut */
+    top: calc(10em + 365px + 70px); 
     left: 0;
     width: 100%;
     z-index: 5;
 }
 
 
-#scene {
+#sceneTop {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10; /* Assurez-vous que la scène est en premier plan */
-    pointer-events: none; /* Ne réagit pas aux événements de la souris */
-
+    width: 100%; /* Conservez la largeur à 100% */
+    height: 20%; /* Réduisez la hauteur à 50% */
+    z-index: 20;
+    pointer-events: none;
 }
+
+#sceneLeft {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 9%; 
+    height: 100%;
+    z-index: 20;
+    pointer-events: none;
+}
+#sceneRight {
+    position: absolute;
+    top: 0;
+    left: 90%; /* Placez-le tout à droite en laissant un espace de 9% à gauche */
+    width: 11%; /* Conservez la largeur à 9% */
+    height: 100%;
+    z-index: 20;
+    pointer-events: none;
+}
+
 
 
 
@@ -93,14 +116,14 @@ html, body {
 .bg1, .bg2, .bg3, .bg4, .bg5, .bg6, .bg7 {
     transform: translateX(0px);
     width: auto;
-    top: 10%; /* Ajusté pour éviter que les images soient coupées en bas */
+    top: 10%; 
     position: relative;
     margin-right: 50em;
-    left: 5%; /* Augmentez cette valeur pour déplacer les images plus à droite */
+    left: 5%;/
 
 }
 .bg1:hover, .bg2:hover, .bg3:hover, .bg4:hover, .bg5:hover, .bg6:hover, .bg7:hover {
-    border: 2px solid red; /* Effet visible pour tester le survol */
+    border: 2px solid red; 
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
@@ -136,7 +159,7 @@ html, body {
         right: 10px;
         cursor: pointer;
         font-size: 24px;
-        color: #666; /* Couleur grise pour un contraste avec le fond blanc */
+        color: #666;
     }
     
     #popupImage {
@@ -166,31 +189,31 @@ html, body {
     }
     
     .moved-down {
-        margin-top: 150px; /* Adjust this value as needed to move it further down */
+        margin-top: 150px; 
     }
     .lampadaire {
         position: absolute;
-        width: 150px; /* Remplacez par la taille souhaitée */
+        width: 150px;
         height: auto;
-        left: 80px; /* Déplacé 20 pixels vers la gauche */
+        left: 80px; 
         
         top: 26%;
-        /* Autres propriétés CSS */
+      
     }
     .lampadaire2 {
         position: absolute;
         width: 150px;
         height: auto;
-        left: 9%; /* Ajustez cette valeur pour le positionner de l'autre côté */
+        left: 9%; 
         top: 26%;
-        /* Autres propriétés CSS */
+      
     }
     
     #gato {
         background: url('https://res.cloudinary.com/pastelitos/image/upload/v1610526571/eva/gatito_pushui.svg');
         height: 297px;
         width: 507.5px;
-        margin-top: 12em; /* Augmentez la valeur de margin-top pour déplacer le chat plus bas */
+        margin-top: 12em;
         margin-left: 2em;
         z-index: 20;
         -webkit-animation: sprite-animation 1.2s steps(16,end) infinite;
