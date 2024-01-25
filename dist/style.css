@@ -1,41 +1,43 @@
-html{
-    font-size:20px;
-    margin:0;
+html {
+    font-size: 20px;
+    margin: 0;
     background: #0c0207;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Pour empêcher le défilement horizontal si nécessaire */
+}
+    #marco {
+        width: 1325px;
+        height: 600px; /* Ajusté pour une meilleure visibilité */
+        margin: 20px auto;
+        overflow: visible; /* Modifié pour permettre un débordement */
+        border-radius: 16px;
+        margin-top: 6em;
     }
-    html, body {
-        overflow-x: hidden; /* Empêche le défilement horizontal */
+
+    #cielo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw; /* Largeur de la fenêtre du navigateur */
+        height: 100vh; /* Hauteur de la fenêtre du navigateur */
+        background: linear-gradient(to bottom, #222d5a 0%, #202744 100%); /* Dégradé de bleu nuit */
+        z-index: -30; /* Ajustez si nécessaire pour la superposition */
+        border-radius: 0; /* Supprimé car couvrant tout l'écran */
     }
     
-#marco{
-    width: 1325px;
-    height: 500px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 16px;
-    margin-top: 6em;
-    }
-
-#cielo{
-    border-radius: 16px;
-    width: 1325px;
-    height: 500px;
-    background: linear-gradient(to bottom,  #0B4C5F 0%,#04B4AE 52%,#0c0207 100%); 
-    position: absolute;
-    z-index: -30;
-    top: 0;
-    margin-top: 2em;
-    }
 
     #background-images {
-        height: 600px;
-        width: 800%; /* Augmentez la largeur pour un défilement continu */
+        height: 100%; /* Ajusté pour correspondre à la hauteur de #marco */
+        width: 800%;
         z-index: -10;
         top: 1em;
         position: absolute;
-        overflow: hidden;
+        overflow: visible; /* Ajouté pour permettre un débordement */
     }
-    
 
   .background-image {
     height: 100%;
@@ -47,7 +49,25 @@ html{
 .paused {
     animation-play-state: paused;
   }
-  
+  #route {
+    position: absolute;
+    top: calc(10em + 365px + 70px); /* Diminuez la valeur de top pour déplacer l'image légèrement vers le haut */
+    left: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+
+#scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 15; /* Assurez-vous que la scène est en premier plan */
+}
+
+
     /*
   .bg1 { animation: parallax-1 50s linear infinite; }
   .bg2 { animation: parallax-2 50s linear infinite; }
@@ -68,7 +88,15 @@ html{
 
 .bg1, .bg2, .bg3, .bg4, .bg5, .bg6, .bg7 {
     transform: translateX(0px);
+    width: auto;
+    top: 10%; /* Ajusté pour éviter que les images soient coupées en bas */
+    position: relative;
+    margin-right: 50em;
+    left: 5%; /* Augmentez cette valeur pour déplacer les images plus à droite */
+
 }
+
+
 
     .lampadaire {
         position: absolute;
@@ -146,15 +174,15 @@ html{
         background: url('https://res.cloudinary.com/pastelitos/image/upload/v1610526571/eva/gatito_pushui.svg');
         height: 297px;
         width: 507.5px;
-        margin-top: 10em; /* Adjust this value to move the cat down */
+        margin-top: 12em; /* Augmentez la valeur de margin-top pour déplacer le chat plus bas */
         margin-left: 2em;
         z-index: 10;
         -webkit-animation: sprite-animation 1.2s steps(16,end) infinite;
-        -moz-animation: sprite-animation 1.2s steps(16,end) infinite; 
-        -ms-animation: sprite-animation 1.2s steps(16,end) infinite; 
+        -moz-animation: sprite-animation 1.2s steps(16,end) infinite;
+        -ms-animation: sprite-animation 1.2s steps(16,end) infinite;
         animation: sprite-animation 1.2s steps(16,end) infinite;
-        position: absolute; /* Ajoutez ceci si ce n'est pas déjà fait */
-    left: 2em; /* Assurez-vous que cette propriété est définie pour permettre le mouvement horizontal */
+        position: absolute;
+        left: 2em;
     }
     
 
