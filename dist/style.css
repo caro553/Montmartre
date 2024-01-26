@@ -118,38 +118,53 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
-    max-width: 600px; /* Ajustez la largeur maximale */
+    width: 100%;
+    max-width: 800px; /* Ajustez la largeur maximale */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-
     z-index: 9999;
- 
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
-    
     backdrop-filter: blur(5px); /* Effet de flou pour la modernité */
-  
-    
-
-
     background: rgba(250, 245, 232, 0.95); /* Couleur de fond crème */
     color: #333; /* Couleur de texte foncée pour un bon contraste */
     border: 1px solid #d0a96a; /* Bordure dorée */
+    height: 500px; /* Hauteur fixe, ajustez selon vos besoins */
+    overflow-y: auto; /* Permet le défilement si le contenu est trop long */
 }
 #popup-overlay::before {
     content: '';
     position: absolute;
     top: 10px; left: 10px; right: 10px; bottom: 10px;
-    border: 1px solid #d0a96a; /* Cadre intérieur doré */
+    border: 1px solid #af7619; /* Cadre intérieur doré */
     pointer-events: none; /* Pour éviter toute interaction avec cet élément */
 }
-
 #popup {
-    padding: 20px;
-    max-width: 80%; /* Limite la largeur */
-    max-height: 80vh; /* Limite la hauteur */
-    overflow: auto; /* Permet le défilement si nécessaire */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
+
+.popup-content {
+    display: flex;
+    align-items: center; /* Aligner verticalement les éléments */
+    justify-content: center; /* Centrer horizontalement */
+    width: 100%;
+}
+#popup-title {
+    font-size: 1.5em; /* Taille du titre */
+    color: #333; /* Couleur du texte */
+    margin-bottom: 0.5em; /* Espacement sous le titre */
+    text-align: center; /* Centrer le titre */
+}
+
+#popup-description {
+    font-size: 1em; /* Taille de la description */
+    color: #333;
+    margin-bottom: 1em; /* Espacement sous la description */
+    text-align: justify; /* Justifier le texte */
+}
+
 .close {
     position: absolute;
     top: 10px;
@@ -160,21 +175,31 @@ html, body {
     text-shadow: 0 0 10px #000000; /* Ombre portée néon */
 }
 #popupImage {
-    max-width: 100%;
-    max-height: 60%;
+    max-width: 100%; /* Taille maximale de l'image */
+    max-height: 300px; /* Hauteur maximale de l'image */
     display: block;
-    margin: 0 auto;
-    border-radius: 4px; /* Ajoutez une légère bordure arrondie pour un look plus doux */
+    margin-right: 20px; /* Espacement entre l'image et le texte */
 }
 
+.popup-text {
+    max-width: 60%; /* Limite la largeur du texte */
+    overflow-y: auto; /* Permet le défilement vertical si nécessaire */
+    max-height: 200px; /* Hauteur maximale avant de déclencher le défilement */
+    margin-left: 20px; /* Espacement entre l'image et le texte */
+    text-align: left;
+}
+
+#popupImage, .thumbnail {
+    margin: 0 auto; /* Centre horizontalement les images */
+    display: block; /* Assure que margin: auto fonctionne correctement */
+}
 @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
 
 #album-thumbnails {
     display: flex;
-    overflow-x: auto; /* Permettre le défilement si trop d'images */
-    padding: 10px;
-    justify-content: center; /* Centrer les miniatures */
-    align-items: center; /* Aligner verticalement */
+    justify-content: center; /* Centre horizontalement les miniatures */
+    flex-wrap: wrap; /* Permet aux miniatures de s'enrouler si l'espace est insuffisant */
+    width: 100%; /* Prend la pleine largeur du conteneur */
 }
 
 .thumbnail {
