@@ -2,87 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CodePen - walking cat </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="./style.css">
+    <title>Votre Titre</title>
+    <link rel="stylesheet" href="home.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
 </head>
 <body>
-    <div id="marco">
-        <div id="cielo"></div>
-        <div id="luna"></div>
-        <div id="gato"></div>
-        <img src="route.png" alt="Route" id="route">
-        <img src="Scene-top.png" alt="Scene" id="sceneTop"> 
-        <img src="Scene-left.png" alt="Scene" id="sceneLeft"> 
-        <img src="Scene-right.png" alt="Scene" id="sceneRight"> 
-        <div id="background-images">
-            <img class="lampadaire" src="lampadaire.png" alt="Lampadaire">
-            <img class="lampadaire2" src="lampadaire.png" alt="Lampadaire">
-            <img class="bg5" src="Moulin5.png" alt="Moulin 5" onclick="openPopup('Moulin5.png')">
-        
 
-            <img class="bg4" src="Moulin4.png" alt="Moulin 4" onclick="openPopup('Moulin4.png')">
-
-            <img class="bg2" src="moulin2.png" alt="Moulin 2" onclick="openPopup('moulin2.png')">
-            <img class="bg7" src="Moulin7.png" alt="Moulin 7" onclick="openPopup('Moulin7.png')">
-
-            <img class="bg3" src="moulin3.png" alt="Moulin 3" onclick="openPopup('moulin3.png')">
-
-            <img class="bg6" src="Moulin6.png" alt="Moulin 6" onclick="openPopup('Moulin6.png')">
-
-            <img class="bg1" src="moulin1.png" alt="Moulin 1" onclick="openPopup('moulin1.png')">      
-        </div>
+    <div id="app" class="wrapper">
+        <div id="stage" class="scene">
+            <title-logo :state="state" v-if="state==='loaded'"></title-logo>
+        <transition-group name="loadingTransition">
+            <img id="curtainLeft" key="curtainLeft" class="curtain" v-if="state != 'loaded'" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/641/curtain-left.png">
+            <img id="curtainRight" key="curtainRight" class="curtain" v-if="state != 'loaded'" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/641/curtain-right.png">
+            <img id="curtainTop" key="curtainTop" class="curtain" v-if="state != 'loaded'" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/641/curtain-top.png">
+            <p key="signLoading" id="signage" v-if="state==='loading'">Chargement</p>
+        </transition-group>
     </div>
+</div>
 
-    <div id="popup-overlay">
-        <div id="popup">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <img id="popupImage" src="" alt="Popup Image">
-        </div>
-    </div>
+<script>
+   Vue.component('title-logo', {
+    props: ['state'],
+    template: `
+      <div id="logo">
+        <!-- Votre contenu existant ici -->
+        <button v-if="state === 'loaded'" @click="goToContent">Accéder au Contenu</button>
+      </div>
+    `,
+    methods: {
+      goToContent() {
+        console.log("Bouton cliqué");
+        window.location.href = 'context.html';
+      }
+    }
+});
 
-    <script>
-        function openPopup(imageSrc) {
-            console.log("openPopup appelé avec l'image :", imageSrc); 
-            var popupImage = document.getElementById('popupImage');
-            var popupOverlay = document.getElementById('popup-overlay');
-    
-            popupImage.src = imageSrc;
-            console.log("Image src défini comme :", popupImage.src);
-            popupOverlay.style.display = 'flex';
-        }
-    
-        function closePopup() {
-            console.log("closePopup appelé"); 
-            var popupOverlay = document.getElementById('popup-overlay');
-            popupOverlay.style.display = 'none';
-        }
-    
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "ArrowRight") {
-                var parallaxElements = document.querySelectorAll('.bg1, .bg2, .bg3, .bg4, .bg5, .bg6, .bg7');
-                var cat = document.getElementById('gato');
-    
-                parallaxElements.forEach(function(elem) {
-                    var currentTransform = getComputedStyle(elem).transform;
-                    var matrixValues = currentTransform.split(',');
-                    var translateX = parseFloat(matrixValues[4]);
-                    elem.style.transform = 'translateX(' + (translateX - 10) + 'px)';
-                });
-    
-               
-                cat.style.animationPlayState = 'running'; 
-            }
-        });
-    
-     
-        document.addEventListener('keyup', function(event) {
-            if (event.key === "ArrowRight") {
-                var cat = document.getElementById('gato');
-                cat.style.animationPlayState = 'paused';
-            }
-        });
-        
+new Vue({
+    el: "#app",
+    data: {
+        state: "loading"
+    },
+    created() {
+        console.log("Création de l'instance Vue");
+        window.setTimeout(() => {
+            this.state = "loaded";
+            console.log("Changement d'état vers 'loaded'");
+        }, 1000);
+    }
+});
+
     </script>
-</body>
-</html>
+    
+    
+    </body>
+    </html>
