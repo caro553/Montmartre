@@ -92,27 +92,6 @@ html, body {
     pointer-events: none;
 }
 
-
-
-
-    /*
-  .bg1 { animation: parallax-1 50s linear infinite; }
-  .bg2 { animation: parallax-2 50s linear infinite; }
-  .bg3 { animation: parallax-3 50s linear infinite; }
-  .bg4 { animation: parallax-4 50s linear infinite; }
-  .bg5 { animation: parallax-5 50s linear infinite; }
-  .bg6 { animation: parallax-6 50s linear infinite; }
-  .bg7 { animation: parallax-7 50s linear infinite; }
-    
-    @keyframes parallax-1 { 0%, 100% { transform: translateX(0%); } 100% { transform: translateX(-600%); } }
-    @keyframes parallax-2 { 0%, 100% { transform: translateX(0%); } 100% { transform: translateX(-600%); } }
-    @keyframes parallax-3 { 0%, 100% { transform: translateX(0%); } 100% { transform: translateX(-600%); } }
-    @keyframes parallax-4 { 0%, 100% { transform: translateX(0%); } 100% { transform: translateX(-600%); } }
-    @keyframes parallax-5 { 0%, 100% { transform: translateX(0%); } 100% { transform: translateX(-600%); } }
-    @keyframes parallax-6 { 0%, 100% { transform: translateX(0%); } 100% { transform: translateX(-600%); } }
-    @keyframes parallax-7 { 0%, 100% { transform: translateX(0%); } 100% { transform: translateX(-600%); } }
-*/
-
 .bg1, .bg2, .bg3, .bg4, .bg5, .bg6, .bg7 {
     transform: translateX(0px);
     width: auto;
@@ -133,40 +112,59 @@ html, body {
 
 
 
-    #popup-overlay {
-        display: none;
-        position: fixed;
-        bottom: 10%;
-        left: 20%;
-        width: 60%;
-        height: auto;
-        background: rgba(255, 255, 255, 0.9); 
-        z-index: 9999;
-        border: 2px solid #f2f2f2; 
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
-        transition: opacity 0.3s ease-in-out;
-    }
-    
-    #popup {
-        padding: 20px;
-        position: relative;
-    }
-    
-    .close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-        font-size: 24px;
-        color: #666;
-    }
-    
-    #popupImage {
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 8px;
-    }
+#popup-overlay {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-width: 600px; /* Ajustez la largeur maximale */
+    background: rgba(255, 255, 255, 0.95); /* Couleur de fond légèrement transparente */
+    z-index: 9999;
+    border: 1px solid #f2f2f2;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    background: rgba(10, 10, 10, 0.9); /* Fond plus sombre pour un effet futuriste */
+    backdrop-filter: blur(5px); /* Effet de flou pour la modernité */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Bordure subtile */
+}
+
+#popup {
+    padding: 20px;
+    font-family: 'Orbitron', sans-serif; /* Police futuriste */
+    color: #ddd; /* Couleur de texte claire */
+    display: flex; /* Active Flexbox */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement, si nécessaire */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #ffffff; /* Couleur néon pour le bouton de fermeture */
+    text-shadow: 0 0 10px #f0f0f0; /* Ombre portée néon */
+}
+
+#popupImage {
+    max-width: 100%;
+    max-height: 400px; /* Hauteur maximale */
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 3px solid #ddd; /* Bordure métallique pour l'image */
+}
+@keyframes neonGlow {
+    from { box-shadow: 0 0 5px #c0a705, 0 0 15px #c79011; }
+    to { box-shadow: 0 0 20px #99730b, 0 0 30px #bb9910; }
+}
+
+#popup:hover {
+    animation: neonGlow 1s alternate infinite;
+}
 #luna {
     width: 6em;
     height: 6em;
