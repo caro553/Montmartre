@@ -25,7 +25,7 @@
 
             <img class="bg3" src="moulin3.png" alt="Moulin 3" onclick="openPopup('moulin3.png')">
 
-            <img class="bg6" src="Moulin6.png" alt="Moulin 6" onclick="openPopup('Moulin6.png')">
+            <img class="bg6" src="Moulin6.png" alt="Moulin 6" onclick="openPopup('Moulin6')">
 
             <img class="bg1" src="moulin1.png" alt="Moulin 1" onclick="openPopup('moulin1.png')">      
         </div>
@@ -34,10 +34,16 @@
     <div id="popup-overlay">
         <div id="popup">
             <span class="close" onclick="closePopup()">&times;</span>
-            <h2 id="popup-title">Titre de la Pop-up</h2>
+            <h2 id="popup-title"></h2>
     
             <div class="popup-content">
-                <img id="popupImage" src="" alt="Popup Image" class="img-wrapper faster">
+                <!-- Élément vidéo ajouté ici -->
+                <video id="popupVideo" controls style="display: none; max-width: 100%;">
+                    <source src="" type="video/mp4">
+                    Votre navigateur ne supporte pas les vidéos HTML5.
+                </video>
+                <!-- Élément image existant -->
+                <img id="popupImage" src="" alt="Popup Image" class="img-wrapper faster" style="display: none;">
                 <div class="popup-text">
                     <p id="popup-description">Description ici...</p>
                     <!-- Autres éléments textuels ici si nécessaire -->
@@ -49,6 +55,7 @@
             </div>
         </div>
     </div>
+    
     
     
 
@@ -67,15 +74,48 @@
         { src: "galette_4.jpg", description: "Archive: Moulin de la galette Rue Lepic 1880 - 1900 (J.Jonchère, dessinateur) Au début des années 1920, face à la menace de disparition du Radet, la communauté montmartroise s'organise pour sauver ce dernier vestige. Grâce à des efforts concertés et à une proposition alternative, le Radet est préservé et installé à son emplacement actuel en 1924. Le Blute-fin reste le dernier moulin fonctionnel de la Butte, classé monument historique depuis 1958. Sa préservation continue avec des restaurations régulières, assurant que l'histoire des moulins de Montmartre demeure vivante dans le patrimoine de la ville. Archive: Paris - Moulin de la Galette 1970 (Jacqueline Guillot, photographe)" },
 
         // Ajoutez d'autres images et descriptions ici
+    ],
+    "Moulin6": [
+        {},
+        { },
+
+        // Ajoutez d'autres images et descriptions ici
     ]
     // Ajoutez d'autres albums ici
 };
     
 function openPopup(albumId) {
     var popupOverlay = document.getElementById('popup-overlay');
+    var popupVideo = document.getElementById('popupVideo');
     var popupImage = document.getElementById('popupImage');
     var popupDescription = document.getElementById('popup-description');
     var thumbnailsContainer = document.getElementById('album-thumbnails');
+    var popupTitle = document.getElementById('popup-title');
+
+
+
+    
+    // Réinitialisez l'affichage pour les images et la vidéo
+    popupVideo.style.display = 'none';
+    popupImage.style.display = 'none';
+    
+ // Gérer la popup pour "Moulin6"
+ if (albumId === 'Moulin6') {
+        popupVideo.style.display = 'block';
+        popupImage.style.display = 'none';
+        popupVideo.src = 'video/video.mp4'; // Mettez ici le chemin de votre vidéo
+        popupDescription.textContent = 'Description pour la vidéo Moulin6';
+    } else {
+        popupVideo.style.display = 'none';
+        popupImage.style.display = 'block';
+        // Gérer les autres cas comme avant
+        var album = albums[albumId];
+        if (album && album.length > 0) {
+            popupImage.src = album[0].src;
+            popupDescription.textContent = album[0].description;
+            // ... reste du code pour gérer les images ...
+        }
+    }
 
     var album = albums[albumId];
     if (album && album.length > 0) {

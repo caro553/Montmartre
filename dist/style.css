@@ -128,7 +128,7 @@ html, body {
     background: rgba(250, 245, 232, 0.95); /* Couleur de fond crème */
     color: #333; /* Couleur de texte foncée pour un bon contraste */
     border: 1px solid #d0a96a; /* Bordure dorée */
-    height: 500px; /* Hauteur fixe, ajustez selon vos besoins */
+    max-height: 700px; /* Hauteur maximale, ajustez selon vos besoins */
     overflow-y: auto; /* Permet le défilement si le contenu est trop long */
 }
 #popup-overlay::before {
