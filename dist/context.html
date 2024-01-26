@@ -18,10 +18,8 @@
         <div id="background-images">
             <img class="lampadaire" src="lampadaire.png" alt="Lampadaire">
             <img class="lampadaire2" src="lampadaire.png" alt="Lampadaire">
-            <img class="bg5" src="Moulin5.png" alt="Moulin 5" onclick="openPopup('Moulin5.png')">
-        
-
-            <img class="bg4" src="Moulin4.png" alt="Moulin 4" onclick="openPopup('Moulin4.png')">
+            <img class="bg5" src="Moulin5.png" alt="Moulin 5" onclick="openPopup('Moulin5')">
+            <img class="bg4" src="Moulin4.png" alt="Moulin 4" onclick="openPopup('Moulin4')">
 
             <img class="bg2" src="moulin2.png" alt="Moulin 2" onclick="openPopup('moulin2.png')">
             <img class="bg7" src="Moulin7.png" alt="Moulin 7" onclick="openPopup('Moulin7.png')">
@@ -37,20 +35,54 @@
     <div id="popup-overlay">
         <div id="popup">
             <span class="close" onclick="closePopup()">&times;</span>
-            <img id="popupImage" src="" alt="Popup Image">
+            <div id="album-container">
+                <img id="popupImage" src="" alt="Popup Image" class="img-wrapper faster">
+                <div id="album-thumbnails">
+                    <!-- Les miniatures seront générées ici -->
+                </div>
+            </div>
         </div>
     </div>
+    
 
     <script>
-        function openPopup(imageSrc) {
-            console.log("openPopup appelé avec l'image :", imageSrc); 
-            var popupImage = document.getElementById('popupImage');
-            var popupOverlay = document.getElementById('popup-overlay');
+        var currentImageIndex = 0;
+        var albums = {
+    "Moulin5": ["Moulin5.png", "Moulin7.png", "Moulin6.png"],
+    "Moulin4": ["Moulin6.png", "Moulin7.png", "Moulin5.png"],
+    // ... et ainsi de suite pour les autres albums ...
+};
     
-            popupImage.src = imageSrc;
-            console.log("Image src défini comme :", popupImage.src);
-            popupOverlay.style.display = 'flex';
-        }
+function openPopup(albumId) {
+    var popupImage = document.getElementById('popupImage');
+    var popupOverlay = document.getElementById('popup-overlay');
+    var thumbnailsContainer = document.getElementById('album-thumbnails');
+
+    var imageList = albums[albumId];
+    if (imageList && imageList.length > 0) {
+        // Définissez la première image de l'album comme image principale
+        popupImage.src = imageList[0];
+        thumbnailsContainer.innerHTML = '';
+
+        imageList.forEach((image, index) => {
+            let thumbnail = document.createElement('img');
+            thumbnail.src = image;
+            thumbnail.className = 'thumbnail';
+            thumbnail.onclick = () => switchImage(index, imageList);
+            thumbnailsContainer.appendChild(thumbnail);
+        });
+    }
+
+    popupOverlay.style.display = 'flex';
+}
+
+function switchImage(index, imageList) {
+    var popupImage = document.getElementById('popupImage');
+    popupImage.src = imageList[index];
+}
+
+
+
     
         function closePopup() {
             console.log("closePopup appelé"); 
